@@ -1,5 +1,13 @@
 {{define "main"}}
 <!DOCTYPE html>
+<!-- 
+            ^__^
+            (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||
+            eat more chikn
+    -->
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -51,8 +59,10 @@
                 <h1>Base64 Encode/Decode</h1>
                 <form action="/" method="post">
                     <h3 class="form-signin-heading">Plaintext</h3>
-                    <input id="plaintext" class="form-control" placeholder="To be encoded..." type="text">{{.Pt}}</input>
-                    <input id="encoded" class="form-control" placeholder="To be decoded..." type="text">{{.En}}</input>
+                    <input id="plaintext" class="form-control" placeholder="To be encoded..." type="text" value="{{.Pt}}" name="plaintext">
+                    <h3 class="form-signin-heading">Base64 Encoded Text</h3>
+                    <input id="encoded" class="form-control" placeholder="To be decoded..." type="text" value="{{.En}}" name="encoded">
+                    <br>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Encode/Decode</button>
                 </form>
             </div>
@@ -61,7 +71,7 @@
             <hr>
                 <footer>
                     <p>
-                    To encode, 
+                    To encode, enter any text you wish to encode into the encode field and click da button. To decode, <b>clear the plaintext field</b> and enter in the base64 encoded text into the encoded text field, the click da button.
                     </p> 
                 </footer>
 
