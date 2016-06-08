@@ -4,6 +4,7 @@ import (
 	"encoding/base64"
 	"fmt"
 	"html/template"
+	"log"
 	"net/http"
 )
 
