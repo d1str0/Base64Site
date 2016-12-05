@@ -18,7 +18,12 @@ func main() {
 	http.HandleFunc("/", HomeHandler)              // Should load login page or forward to /admin/system if logged in
 	http.HandleFunc("/resources/", includeHandler) // Loads css/js/etc. straight through.
 
-	log.Fatal(http.ListenAndServeTLS(":443", "cert.pem", "key.pem", nil))
+	srv := &http.Server{
+		ReadTimeout:  5 * time.Second,
+		WriteTimeout: 10 * time.Second,
+	}
+
+	log.Fatal(srv.ListenAndServeTLS(":443", "cert.pem", "key.pem", nil))
 }
 
 type Page struct {
