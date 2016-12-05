@@ -6,6 +6,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"time"
 )
 
 const version = "0.0.1"
@@ -19,11 +20,12 @@ func main() {
 	http.HandleFunc("/resources/", includeHandler) // Loads css/js/etc. straight through.
 
 	srv := &http.Server{
+		Addr:         ":443",
 		ReadTimeout:  5 * time.Second,
 		WriteTimeout: 10 * time.Second,
 	}
 
-	log.Fatal(srv.ListenAndServeTLS(":443", "cert.pem", "key.pem", nil))
+	log.Fatal(srv.ListenAndServeTLS("cert.pem", "key.pem"))
 }
 
 type Page struct {
