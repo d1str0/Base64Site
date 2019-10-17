@@ -16,7 +16,7 @@ const templateDir = "templates/*"
 var templates = template.Must(template.ParseGlob(templateDir))
 
 func main() {
-	http.HandleFunc("/", HomeHandler)              // Should load login page or forward to /admin/system if logged in
+	http.HandleFunc("/", HomeHandler)              // Load main page
 	http.HandleFunc("/resources/", includeHandler) // Loads css/js/etc. straight through.
 
 	srv := &http.Server{
@@ -33,8 +33,7 @@ type Page struct {
 	En string // Encoded
 }
 
-// TODO: Check for those already logged in and forward to /admin
-// Loads the login page.
+// Handle all requests for home page, including POST.
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("%q\n", r)
 	if r.Method != "POST" {
@@ -62,7 +61,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// Render just the login page.
+// Render just the home page.
 func renderIndex(w http.ResponseWriter, p *Page) {
 	err := templates.ExecuteTemplate(w, "main", p)
 	if err != nil {
